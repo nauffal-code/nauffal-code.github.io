@@ -1,5 +1,5 @@
 === ALL ===
-- Make a better description for 2nd
+- Make it a better & short description for 2nd
 
 === ABOUT ===
 - find a great picture for the carousel background
@@ -9,6 +9,7 @@
 - two columns of personal & professional projects/works with dark background
 - every project has a title, image, and a link to the project's website or github repository. Hover project => swipe left show description animation with a github icon and a button to visit the project
 - slider, 3 projects, the middle is bigger than the sides
+- redesign the past projects and insert it into this website
 
 === OUR SERVICES ===
 - three columns of services
