@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grocery Bud</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
+
+      :root {
+        --color1: #5681a6;
+        --color2: #bf988a;
+        --color3: #d7d8d9;
+        --primaryFont: "Roboto", sans-serif;
+        --secondaryFont: "Open Sans", sans-serif;
+      }
+
+      *,
+      ::after,
+      ::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: var(--color3);
+      }
+
+      .close-app {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: #e04448;
+        color: #eee;
+        font-family: "Poppins", sans-serif;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 40px;
+        z-index: 9999;
+      }
+      .close-app i {
+        font-size: 20px;
+        transition: 1s;
+      }
+      .close-app:hover i {
+        transform: rotate(360deg);
+      }
+
+      span {
+        color: var(--color1);
+        font-family: var(--primaryFont);
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      p {
+        font-family: var(--secondaryFont);
+        font-size: 1rem;
+      }
+
+      .hide {
+        opacity: 0;
+      }
+
+      .alert {
+        position: absolute;
+        top: -0.5rem;
+        left: 50%;
+        width: 100%;
+        background-color: #fff;
+        text-align: center;
+        padding: 0.5rem 0.8rem;
+        transform: translate(-50%, -100%);
+      }
+      .alert-danger {
+        background-color: #721c24;
+        color: #fff;
+      }
+      .alert-success {
+        background-color: #155724;
+        color: #fff;
+      }
+
+      .section-center {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 400px;
+        background-color: #fff;
+        padding: 1.25rem 1.5rem;
+      }
+      .grocery-form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .form-control {
+        display: flex;
+        justify-content: center;
+      }
+      .form-control input {
+        padding: 0 0 0 0.5rem;
+        border: none;
+        border-bottom: 1.5px solid var(--color1);
+        outline: none;
+      }
+      .submit-btn {
+        background-color: var(--color1);
+        color: #fff;
+        padding: 0.5rem 0.8rem;
+        border: 1.5px solid var(--color1);
+      }
+      .grocery-container,
+      .grocery-list,
+      .grocery-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .grocery-list,
+      .grocery-item {
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .grocery-item {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .grocery-item .btn-container {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .grocery-item .btn-container button {
+        background-color: transparent;
+        font-size: 1rem;
+        border: none;
+      }
+      .edit-btn {
+        color: orange;
+      }
+      .delete-btn {
+        color: red;
+      }
+
+      .clear-btn {
+        background-color: var(--color1);
+        color: #fff;
+        border: 1.5px solid var(--color1);
+        padding: 0.5rem 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CLOSE APP -->
+    <a href="../../index.html" class="close-app"
+      >Close the app <i class="fa-solid fa-circle-xmark"></i
+    ></a>
+
+    <section class="section-center">
+      <p class="alert"></p>
+      <form class="grocery-form">
+        <span>Grocery bud</span>
+        <div class="form-control">
+          <input type="text" id="grocery" placeholder="e.g. eggs" autofocus />
+          <button type="submit" class="submit-btn">Submit</button>
+        </div>
+      </form>
+      <div class="grocery-container">
+        <div class="grocery-list"></div>
+        <button class="clear-btn">Clear items</button>
+      </div>
+    </section>
+
+    <script>
+      const form = document.querySelector(".grocery-form");
+      const alert = document.querySelector(".alert");
+      alert.classList.add("hide");
+
+      const grocery = document.getElementById("grocery");
+      const submitBtn = document.querySelector(".submit-btn");
+      const container = document.querySelector(".grocery-container");
+      const list = document.querySelector(".grocery-list");
+      const clearBtn = document.querySelector(".clear-btn");
+
+      let editElement;
+      let editFlag = false;
+      let editID = "";
+
+      const displayAlert = (text, action) => {
+        alert.classList.remove("hide");
+        alert.textContent = text;
+        alert.classList.add(`alert-${action}`);
+        setTimeout(() => {
+          alert.classList.add("hide");
+          alert.textContent = "";
+          alert.classList.remove(`alert-${action}`);
+        }, 2500);
+      };
+      const addItem = (e) => {
+        e.preventDefault();
+        const value = grocery.value;
+        const id = new Date().getTime().toString();
+
+        if (value !== "" && !editFlag) {
+          const element = document.createElement("article");
+          let attr = document.createAttribute("data-id");
+          attr.value = id;
+          element.setAttributeNode(attr);
+          element.classList.add("grocery-item");
+          element.innerHTML = `<p class="title">${value}</p>
+      <div class="btn-container">
+        <button type="button" class="edit-btn">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button type="button" class="delete-btn">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    `;
+          const deleteBtn = element.querySelector(".delete-btn");
+          deleteBtn.addEventListener("click", deleteItem);
+          const editBtn = element.querySelector(".edit-btn");
+          editBtn.addEventListener("click", editItem);
+
+          list.appendChild(element);
+          displayAlert("Item added to the list", "success");
+          container.classList.add("show-container");
+          addToLocalStorage(id, value);
+          setBackToDefault();
+        } else if (value !== "" && editFlag) {
+          editElement.innerHTML = value;
+          displayAlert("Value changed", "success");
+
+          editLocalStorage(editID, value);
+          setBackToDefault();
+        } else {
+          displayAlert("Please enter value", "danger");
+        }
+      };
+      const clearItems = () => {
+        const items = document.querySelectorAll(".grocery-item");
+        if (items.length > 0) {
+          items.forEach(function (item) {
+            list.removeChild(item);
+          });
+        }
+        container.classList.remove("show-container");
+        displayAlert("empty list", "danger");
+        setBackToDefault();
+        localStorage.removeItem("list");
+      };
+      const deleteItem = (e) => {
+        const element = e.currentTarget.parentElement.parentElement;
+        const id = element.dataset.id;
+
+        list.removeChild(element);
+
+        if (list.children.length === 0) {
+          container.classList.remove("show-container");
+        }
+        displayAlert("Item removed", "danger");
+
+        setBackToDefault();
+        removeFromLocalStorage(id);
+      };
+      const editItem = (e) => {
+        grocery.focus();
+        const element = e.currentTarget.parentElement.parentElement;
+        editElement = e.currentTarget.parentElement.previousElementSibling;
+        grocery.value = editElement.innerHTML;
+
+        editFlag = true;
+        editID = element.dataset.id;
+        submitBtn.textContent = "Edit";
+      };
+
+      const setBackToDefault = () => {
+        grocery.value = "";
+        editFlag = false;
+        editID = "";
+        submitBtn.textContent = "Submit";
+      };
+
+      const addToLocalStorage = (id, value) => {
+        const grocery = { id, value };
+        let items = getLocalStorage();
+        items.push(grocery);
+        localStorage.setItem("list", JSON.stringify(items));
+      };
+      function getLocalStorage() {
+        return localStorage.getItem("list")
+          ? JSON.parse(localStorage.getItem("list"))
+          : [];
+      }
+
+      function removeFromLocalStorage(id) {
+        let items = getLocalStorage();
+
+        items = items.filter(function (item) {
+          if (item.id !== id) {
+            return item;
+          }
+        });
+
+        localStorage.setItem("list", JSON.stringify(items));
+      }
+      function editLocalStorage(id, value) {
+        let items = getLocalStorage();
+
+        items = items.map(function (item) {
+          if (item.id === id) {
+            item.value = value;
+          }
+          return item;
+        });
+        localStorage.setItem("list", JSON.stringify(items));
+      }
+
+      function setupItems() {
+        let items = getLocalStorage();
+
+        if (items.length > 0) {
+          items.forEach(function (item) {
+            createListItem(item.id, item.value);
+          });
+          container.classList.add("show-container");
+        }
+      }
+
+      function createListItem(id, value) {
+        const element = document.createElement("article");
+        let attr = document.createAttribute("data-id");
+        attr.value = id;
+        element.setAttributeNode(attr);
+        element.classList.add("grocery-item");
+        element.innerHTML = `<p class="title">${value}</p>
+    <div class="btn-container">
+      <!-- edit btn -->
+      <button type="button" class="edit-btn">
+        <i class="fas fa-edit"></i>
+      </button>
+      <!-- delete btn -->
+      <button type="button" class="delete-btn">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
+  `;
+        const deleteBtn = element.querySelector(".delete-btn");
+        deleteBtn.addEventListener("click", deleteItem);
+        const editBtn = element.querySelector(".edit-btn");
+        editBtn.addEventListener("click", editItem);
+
+        list.appendChild(element);
+      }
+
+      form.addEventListener("submit", addItem);
+      clearBtn.addEventListener("click", clearItems);
+      window.addEventListener("DOMContentLoaded", setupItems);
+    </script>
+    <script
+      src="https://kit.fontawesome.com/1160dd891b.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -3,62 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./img/sm-logo-nobg.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <title>NauffalCode</title>
+    <title>Nauffal.Code</title>
   </head>
   <body>
     <header>
       <nav>
-        <span>Nauffal.Code</span>
+        <img src="./img/lg-logo-nobg.png" />
         <div class="toggles">
-          <div class="toggle">
-            <a href="#about">About Us</a>
-            <div class="bubble-effect"></div>
-          </div>
-          <div class="toggle">
-            <a href="#work">Our Works</a>
-            <div class="bubble-effect"></div>
-          </div>
-          <div class="toggle">
-            <a href="#service">Our Services</a>
-            <div class="bubble-effect"></div>
-          </div>
-          <div class="toggle">
-            <a href="#contact">Contact Us</a>
-            <div class="bubble-effect"></div>
-          </div>
+          <a href="#about">About Me</a>
+          <a href="#work">My Works</a>
+          <a href="#service">My Services</a>
+          <a href="#contact">Contact Me</a>
         </div>
       </nav>
       <div class="jumbotron">
-        <span>Text here</span>
-        <p>Paragraph here</p>
-        <button>What is Second?</button>
+        <div class="text">
+          <span>Visualize your ideas</span>
+          <p>One step closer to our dream!</p>
+          <button>What is Second?</button>
+        </div>
+        <img src="./img/sm-logo-nobg.png" alt="logo" />
       </div>
     </header>
     <main>
       <section class="about" id="about">
         <article class="wrapper">
-          <div class="title">About Us</div>
+          <div class="header">
+            <h1>About Us</h1>
+            <span>find out about us more</span>
+          </div>
           <div class="content">
             <div class="desc">
-              <span>Why 2nd Is Made?</span>
+              <h2>Why This Website Is Made?</h2>
               <p>
-                2nd (Second) was born from my passion for empowering others
+                My motivation to create this website is for empowering others
                 through technology. I envisioned a company dedicated to the
                 coding sector, helping individuals develop their websites,
                 create mobile apps, and explore countless possibilities.
               </p>
-              <div class="btn-container">
-                <button class="about-btn active">About Us</button>
-                <button class="history-btn">Our History</button>
-              </div>
-              <div class="line">
-                <i class="fa-solid fa-o"></i>
-              </div>
               <div class="social-links">
                 <a href="#">
                   <i class="fa-brands fa-instagram"></i>
@@ -77,168 +69,289 @@
                 </a>
               </div>
             </div>
-            <div class="our-history">
-              <div class="swiper ourHistory">
-                <div class="swiper-wrapper">
-                  <div
-                    class="swiper-slide"
-                    style="
-                      background-image: url(./img/myjourney.jpg);
-                      background-size: cover;
-                      cursor: grab;
-                    "
-                  >
-                    <div class="overlay">
-                      <span>Providing Tech Services</span>
-                      <p>
-                        Our comprehensive range of services includes exceptional
-                        website development, innovative web application
-                        development, and much more. Let us assist you in
-                        overcoming your tech obstacles and achieving your goals.
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="swiper-slide"
-                    style="
-                      background-image: url(./img/myjourney.jpg);
-                      background-size: cover;
-                      cursor: grab;
-                    "
-                  >
-                    <div class="overlay">
-                      <span>Providing Information about Technology</span>
-                      <p>
-                        We consistently share valuable insights on coding and
-                        programming for educational purposes across our social
-                        media platforms, including Instagram and TikTok. Don’t
-                        miss out—check us out today!
-                      </p>
-                    </div>
+            <div class="swiper ourJourney">
+              <div class="swiper-wrapper">
+                <div
+                  class="swiper-slide"
+                  style="
+                    background-image: url(./img/myjourney.jpg);
+                    background-size: cover;
+                    cursor: grab;
+                  "
+                >
+                  <div class="overlay">
+                    <span>Providing Tech Services</span>
+                    <p>
+                      Our comprehensive range of services includes exceptional
+                      website development, innovative web application
+                      development, and much more. Let us assist you in
+                      overcoming your tech obstacles and achieving your goals.
+                    </p>
                   </div>
                 </div>
-                <div class="swiper-scrollbar"></div>
-              </div>
-            </div>
-            <div class="our-journey">
-              <div class="swiper ourJourney">
-                <div class="swiper-wrapper">
-                  <div
-                    class="swiper-slide"
-                    style="
-                      background-image: url(./img/myjourney.jpg);
-                      background-size: cover;
-                      cursor: grab;
-                    "
-                  >
-                    <div class="overlay">
-                      <span>Providing Tech Services</span>
-                      <p>
-                        Our comprehensive range of services includes exceptional
-                        website development, innovative web application
-                        development, and much more. Let us assist you in
-                        overcoming your tech obstacles and achieving your goals.
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="swiper-slide"
-                    style="
-                      background-image: url(./img/myjourney.jpg);
-                      background-size: cover;
-                      cursor: grab;
-                    "
-                  >
-                    <div class="overlay">
-                      <span>Providing Information about Technology</span>
-                      <p>
-                        We consistently share valuable insights on coding and
-                        programming for educational purposes across our social
-                        media platforms, including Instagram and TikTok. Don’t
-                        miss out—check us out today!
-                      </p>
-                    </div>
+                <div
+                  class="swiper-slide"
+                  style="
+                    background-image: url(./img/myjourney.jpg);
+                    background-size: cover;
+                    cursor: grab;
+                  "
+                >
+                  <div class="overlay">
+                    <span>Providing Information about Technology</span>
+                    <p>
+                      We consistently share valuable insights on coding and
+                      programming for educational purposes across our social
+                      media platforms, including Instagram and TikTok. Don’t
+                      miss out—check us out today!
+                    </p>
                   </div>
                 </div>
-                <div class="swiper-scrollbar"></div>
               </div>
+              <div class="swiper-scrollbar"></div>
             </div>
           </div>
         </article>
       </section>
       <section class="work" id="work">
         <article class="wrapper">
-          <div class="title">
-            <span>Our Works</span>
-            <p>Here are the projects we have worked on.</p>
+          <div class="header">
+            <h1>Our Works</h1>
+            <span>here are the projects we have worked on</span>
           </div>
           <div class="content">
-            <div class="filters">
+            <aside>
               <form action="#" class="search-works">
-                <input type="text" />
-                <button>
-                  <i class=""></i>
-                </button>
-              </form>
-              <div class="lang-filter">
-                <button>All</button>
-                <button>HTML</button>
-                <button>CSS</button>
-                <button>JavaScript</button>
-              </div>
-              <div class="type">
-                <button>All</button>
-                <button>Landing Page</button>
-                <button>Web App</button>
-                <button>Web Game</button>
-              </div>
-            </div>
-            <div class="works-container">
-              <div class="project">
-                <img
-                  src="./projects/assets/project-thumb-1.JPG"
-                  alt="project_1"
+                <input
+                  type="text"
+                  placeholder="Search projects...
+                "
+                  id="search"
                 />
-                <div class="head">
-                  <span>Project 1</span>
-                  <div class="actions">
-                    <a href="">
-                      <i class=""></i>
-                    </a>
-                    <a href="">
-                      <i class=""></i>
-                    </a>
+              </form>
+              <div class="filters">
+                <div class="filter">
+                  <div class="head">
+                    <span>Tools</span>
+                    <i class="fa-solid fa-caret-down"></i>
+                  </div>
+                  <div class="options">
+                    <label data-tool="html"
+                      ><input type="checkbox" />
+                      <div class="checkmark"></div>
+                      HTML</label
+                    >
+                    <label data-tool="css"
+                      ><input type="checkbox" />
+                      <div class="checkmark"></div>
+                      CSS</label
+                    >
+                    <label data-tool="javascript"
+                      ><input type="checkbox" />
+                      <div class="checkmark"></div>
+                      JavaScript</label
+                    >
+                    <label data-tool="bootstrap"
+                      ><input type="checkbox" />
+                      <div class="checkmark"></div>
+                      Bootstrap</label
+                    >
                   </div>
                 </div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Asperiores ex vel recusandae corrupti deleniti? Similique
-                  laborum reiciendis quis unde quia?
-                </p>
+                <div class="filter">
+                  <div class="head">
+                    <span>Types</span>
+                    <i class="fa-solid fa-caret-down"></i>
+                  </div>
+                  <div class="options">
+                    <label data-type="landing page"
+                      ><input type="checkbox" />
+                      <div class="checkmark"></div>
+                      Landing Page</label
+                    >
+                    <label data-type="web app"
+                      ><input type="checkbox" />
+                      <div class="checkmark"></div>
+                      Web App</label
+                    >
+                    <label data-type="web game"
+                      ><input type="checkbox" />
+                      <div class="checkmark"></div>
+                      Web Game</label
+                    >
+                  </div>
+                </div>
               </div>
-            </div>
+            </aside>
+            <div class="works-container"></div>
           </div>
         </article>
       </section>
       <section class="service" id="service">
         <article class="wrapper">
-          <div class="title">Our Services</div>
-          .content>aside+.services-container>
+          <div class="header">
+            <h1>Our Services</h1>
+            <span>discover what you need right here</span>
+          </div>
+          <div class="content">
+            <div class="offer">
+              <i class="fa-solid fa-tv"></i>
+              <span>Front-end Development</span>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Deleniti consequatur labore sed explicabo beatae. Aliquid,
+                numquam? Doloribus aspernatur officiis dolorum.
+              </p>
+            </div>
+            <div class="offer">
+              <i class="fa-solid fa-user-gear"></i>
+              <span>Back-end Development</span>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Deleniti consequatur labore sed explicabo beatae. Aliquid,
+                numquam? Doloribus aspernatur officiis dolorum.
+              </p>
+            </div>
+            <div class="offer">
+              <i class="fa-solid fa-globe"></i>
+              <span>Web Development</span>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Deleniti consequatur labore sed explicabo beatae. Aliquid,
+                numquam? Doloribus aspernatur officiis dolorum.
+              </p>
+            </div>
+            <div class="offer">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>UI/UX Development</span>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Deleniti consequatur labore sed explicabo beatae. Aliquid,
+                numquam? Doloribus aspernatur officiis dolorum.
+              </p>
+            </div>
+            <div class="offer">
+              <i class="fa-solid fa-database"></i>
+              <span>Database Development</span>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Deleniti consequatur labore sed explicabo beatae. Aliquid,
+                numquam? Doloribus aspernatur officiis dolorum.
+              </p>
+            </div>
+          </div>
         </article>
       </section>
       <section class="contact" id="contact">
         <article class="wrapper">
-          <div class="title">Contact Us</div>
+          <div class="header">
+            <h1>Contact Us</h1>
+            <span>connect with us</span>
+          </div>
+          <div class="content">
+            <aside>
+              <div class="info">
+                <i class="fa-regular fa-comments"></i>
+                <span>E-mail Us</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit,
+                  nesciunt!
+                </p>
+                <a href="#">nauffalcode@gmail.com</a>
+              </div>
+              <div class="info">
+                <i class="fa-solid fa-phone"></i>
+                <span>Chat/Call Us</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit,
+                  nesciunt!
+                </p>
+                <a href="#">+62-878-4390-2885</a>
+              </div>
+              <div class="info">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Visit Us</span>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit,
+                  nesciunt!
+                </p>
+                <a href="#">@nauffal.code</a>
+              </div>
+            </aside>
+            <form action="#">
+              <div class="head">
+                <h2>Got ideas? We've got the skills. Let's team up!</h2>
+                <p>
+                  Tell us more about yourself and what is you got in your mind.
+                </p>
+              </div>
+              <div class="input-box">
+                <input type="text" placeholder="Your name" />
+                <input type="text" placeholder="you@gmail.com" />
+                <textarea
+                  name=""
+                  id=""
+                  placeholder="Tell us about the project..."
+                ></textarea>
+              </div>
+              <div class="select-box">
+                <label
+                  ><input type="checkbox" name="" />
+                  <i class="fa-solid fa-check checkmark"></i>
+                  Front-end Development</label
+                >
+                <label
+                  ><input type="checkbox" name="" />
+                  <i class="fa-solid fa-check checkmark"></i>
+                  Back-end Development</label
+                >
+                <label
+                  ><input type="checkbox" name="" />
+                  <i class="fa-solid fa-check checkmark"></i>
+                  Web Development</label
+                >
+                <label
+                  ><input type="checkbox" name="" />
+                  <i class="fa-solid fa-check checkmark"></i>
+                  UI/UX Development</label
+                >
+                <label
+                  ><input type="checkbox" name="" />
+                  <i class="fa-solid fa-check checkmark"></i>
+                  Database Development</label
+                >
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
         </article>
       </section>
     </main>
     <footer>
-      <span>
-        <a href="">nauffal.code</a>
-      </span>
+      <span
+        >Created by <a href="">nauffal.code</a> | &copy;2024 All Rights
+        Reserved.</span
+      >
+      <div class="social-links">
+        <a href="#">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="#">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
     </footer>
     <!-- JS -->
-    <script src="main.js"></script>
+    <script type="module" src="./js/main.js"></script>
     <script
       src="https://kit.fontawesome.com/1160dd891b.js"
       crossorigin="anonymous"
