@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --color-main: #0a66c2;
+  --color-secondary: #2a2d3e;
+  --color-accent: #2f855a;
+  --color-black: #151515;
+  --color-gray: #f6f3f4;
+  --color-white: #fafafa;
+
+  --heading: "Roboto Flex", sans-serif;
+  --title: "Open Sans", sans-serif;
+  --paragraph: "EB Garamond", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* SIMILAR CSS */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 900px;
+  max-width: 95%;
+  padding: 80px 0;
+}
+h1 {
+  color: var(--color-main);
+  font-size: 3rem;
+  font-weight: 700;
+}
+h2 {
+  color: var(--color-secondary);
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+}
+input {
+  outline: none;
+}
+button {
+  display: inline-block;
+}
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  color: var(--color-main) !important;
+  font-size: 2rem !important;
+}
+.swiper-pagination-bullet {
+  width: 5px !important;
+  height: 5px !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--color-main) !important;
+}
+
+/* CUSTOM CSS */
+.main-nav {
+  @apply fixed top-0 left-0 w-full flex justify-between items-center bg-transparent py-8 px-10 z-10;
+}
+.underline-hover {
+  @apply relative after:content-[''] after:absolute after:top-0 after:-bottom-1 after:left-0 after:right-0 after:border-b-2 after:border-b-black after:scale-x-0 after:transition after:duration-200 hover:after:scale-x-[0.5];
+}
+.normal-btn {
+  @apply inline-block bg-main font-medium text-white mt-4 py-3 px-5 rounded-[10px];
+}

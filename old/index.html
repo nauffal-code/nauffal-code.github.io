@@ -18,7 +18,9 @@
   <body>
     <header>
       <nav>
-        <img src="./img/lg-logo-nobg.png" />
+        <a href="#">
+          <img src="./img/lg-logo-nobg.png" />
+        </a>
         <div class="toggles">
           <a href="#about">About Me</a>
           <a href="#work">My Works</a>
@@ -38,37 +40,8 @@
     <main>
       <section class="about" id="about">
         <article class="wrapper">
-          <div class="header">
-            <h1>About Us</h1>
-            <span>find out about us more</span>
-          </div>
+          <h1>About Us</h1>
           <div class="content">
-            <div class="desc">
-              <h2>Why This Website Is Made?</h2>
-              <p>
-                My motivation to create this website is for empowering others
-                through technology. I envisioned a company dedicated to the
-                coding sector, helping individuals develop their websites,
-                create mobile apps, and explore countless possibilities.
-              </p>
-              <div class="social-links">
-                <a href="#">
-                  <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#">
-                  <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="#">
-                  <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="#">
-                  <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="#">
-                  <i class="fa-brands fa-github"></i>
-                </a>
-              </div>
-            </div>
             <div class="swiper ourJourney">
               <div class="swiper-wrapper">
                 <div
@@ -110,15 +83,43 @@
               </div>
               <div class="swiper-scrollbar"></div>
             </div>
+            <aside>
+              <div class="desc">
+                <h2>Why This Website Is Made?</h2>
+                <p>
+                  My motivation to create this website is for empowering others
+                  through technology. I envisioned a company dedicated to the
+                  coding sector, helping individuals develop their websites,
+                  create mobile apps, and explore countless possibilities.
+                </p>
+                <a href=""
+                  >See My Work<i class="fa-solid fa-angle-right"></i
+                ></a>
+              </div>
+              <div class="social-links">
+                <a href="#">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="#">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </aside>
           </div>
         </article>
       </section>
       <section class="work" id="work">
         <article class="wrapper">
-          <div class="header">
-            <h1>Our Works</h1>
-            <span>here are the projects we have worked on</span>
-          </div>
+          <h1>Our Works</h1>
           <div class="content">
             <aside>
               <form action="#" class="search-works">
@@ -130,33 +131,12 @@
                 />
               </form>
               <div class="filters">
-                <div class="filter">
+                <div class="filter tools-filter">
                   <div class="head">
                     <span>Tools</span>
                     <i class="fa-solid fa-caret-down"></i>
                   </div>
-                  <div class="options">
-                    <label data-tool="html"
-                      ><input type="checkbox" />
-                      <div class="checkmark"></div>
-                      HTML</label
-                    >
-                    <label data-tool="css"
-                      ><input type="checkbox" />
-                      <div class="checkmark"></div>
-                      CSS</label
-                    >
-                    <label data-tool="javascript"
-                      ><input type="checkbox" />
-                      <div class="checkmark"></div>
-                      JavaScript</label
-                    >
-                    <label data-tool="bootstrap"
-                      ><input type="checkbox" />
-                      <div class="checkmark"></div>
-                      Bootstrap</label
-                    >
-                  </div>
+                  <div class="options"></div>
                 </div>
                 <div class="filter">
                   <div class="head">
@@ -166,18 +146,16 @@
                   <div class="options">
                     <label data-type="landing page"
                       ><input type="checkbox" />
-                      <div class="checkmark"></div>
-                      Landing Page</label
+                      <i class="fa-solid fa-check checkmark"></i>Landing
+                      Page</label
                     >
                     <label data-type="web app"
                       ><input type="checkbox" />
-                      <div class="checkmark"></div>
-                      Web App</label
+                      <i class="fa-solid fa-check checkmark"></i>Web App</label
                     >
                     <label data-type="web game"
                       ><input type="checkbox" />
-                      <div class="checkmark"></div>
-                      Web Game</label
+                      <i class="fa-solid fa-check checkmark"></i>Web Game</label
                     >
                   </div>
                 </div>
@@ -189,10 +167,7 @@
       </section>
       <section class="service" id="service">
         <article class="wrapper">
-          <div class="header">
-            <h1>Our Services</h1>
-            <span>discover what you need right here</span>
-          </div>
+          <h1>Our Services</h1>
           <div class="content">
             <div class="offer">
               <i class="fa-solid fa-tv"></i>
@@ -244,10 +219,7 @@
       </section>
       <section class="contact" id="contact">
         <article class="wrapper">
-          <div class="header">
-            <h1>Contact Us</h1>
-            <span>connect with us</span>
-          </div>
+          <h1>Contact Us</h1>
           <div class="content">
             <aside>
               <div class="info">
@@ -278,7 +250,7 @@
                 <a href="#">@nauffal.code</a>
               </div>
             </aside>
-            <form action="#">
+            <form action="#" class="contact-form">
               <div class="head">
                 <h2>Got ideas? We've got the skills. Let's team up!</h2>
                 <p>
@@ -286,11 +258,21 @@
                 </p>
               </div>
               <div class="input-box">
-                <input type="text" placeholder="Your name" />
-                <input type="text" placeholder="you@gmail.com" />
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Your name"
+                  autocomplete="off"
+                />
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="you@gmail.com"
+                  autocomplete="off"
+                />
                 <textarea
                   name=""
-                  id=""
+                  id="message"
                   placeholder="Tell us about the project..."
                 ></textarea>
               </div>
