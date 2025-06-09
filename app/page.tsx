@@ -8,17 +8,25 @@ import {
   faCaretDown,
   faMagnifyingGlass,
   faArrowRight,
+  faTv,
+  faUserGear,
+  faGlobe,
+  faWandMagicSparkles,
+  faDatabase,
+  faPhone,
+  faComments,
+  faLocationDot,
   // faCaretUp,
   // faChevronLeft,
   // faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  // faInstagram,
-  // faTiktok,
-  // faFacebook,
-  // faYoutube,
+  faInstagram,
+  faTiktok,
+  faFacebook,
+  faYoutube,
   faGithub,
-  // faLinkedin,
+  faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -443,50 +451,75 @@ const Home = () => {
             </div>
           </article>
         </section>
-        <section className="service" id="service">
-          <article className="wrapper">
+        <section>
+          <article>
             <h1>Our Services</h1>
-            <div className="content">
-              <div className="offer">
-                <i className="fa-solid fa-tv"></i>
-                <span>Front-end Development</span>
-                <p>
+            <div className="grid grid-cols-3 gap-x-5 gap-y-8">
+              <div className="flex flex-col">
+                <FontAwesomeIcon
+                  className="text-2xl text-secondary"
+                  icon={faTv}
+                />
+                <span className="font-semibold text-main text-2xl mt-2 mb-2 pb-2 mx-auto border-b-2 border-accent">
+                  Front-end Development
+                </span>
+                <p className="text-secondary text-justify">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Deleniti consequatur labore sed explicabo beatae. Aliquid,
                   numquam? Doloribus aspernatur officiis dolorum.
                 </p>
               </div>
-              <div className="offer">
-                <i className="fa-solid fa-user-gear"></i>
-                <span>Back-end Development</span>
-                <p>
+              <div className="flex flex-col">
+                <FontAwesomeIcon
+                  className="text-2xl text-secondary"
+                  icon={faUserGear}
+                />
+                <span className="font-semibold text-main text-2xl mt-2 mb-2 pb-2 mx-auto border-b-2 border-accent">
+                  Back-end Development
+                </span>
+                <p className="text-secondary text-justify">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Deleniti consequatur labore sed explicabo beatae. Aliquid,
                   numquam? Doloribus aspernatur officiis dolorum.
                 </p>
               </div>
-              <div className="offer">
-                <i className="fa-solid fa-globe"></i>
-                <span>Web Development</span>
-                <p>
+              <div className="flex flex-col">
+                <FontAwesomeIcon
+                  className="text-2xl text-secondary"
+                  icon={faGlobe}
+                />
+                <span className="font-semibold text-main text-2xl mt-2 mb-2 pb-2 mx-auto border-b-2 border-accent">
+                  Web Development
+                </span>
+                <p className="text-secondary text-justify">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Deleniti consequatur labore sed explicabo beatae. Aliquid,
                   numquam? Doloribus aspernatur officiis dolorum.
                 </p>
               </div>
-              <div className="offer">
-                <i className="fa-solid fa-wand-magic-sparkles"></i>
-                <span>UI/UX Development</span>
-                <p>
+              <div className="flex flex-col">
+                <FontAwesomeIcon
+                  className="text-2xl text-secondary"
+                  icon={faWandMagicSparkles}
+                />
+                <span className="font-semibold text-main text-2xl mt-2 mb-2 pb-2 mx-auto border-b-2 border-accent">
+                  UI/UX Development
+                </span>
+                <p className="text-secondary text-justify">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Deleniti consequatur labore sed explicabo beatae. Aliquid,
                   numquam? Doloribus aspernatur officiis dolorum.
                 </p>
               </div>
-              <div className="offer">
-                <i className="fa-solid fa-database"></i>
-                <span>Database Development</span>
-                <p>
+              <div className="flex flex-col">
+                <FontAwesomeIcon
+                  className="text-2xl text-secondary"
+                  icon={faDatabase}
+                />
+                <span className="font-semibold text-main text-2xl mt-2 mb-2 pb-2 mx-auto border-b-2 border-accent">
+                  Database Development
+                </span>
+                <p className="text-secondary text-justify">
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Deleniti consequatur labore sed explicabo beatae. Aliquid,
                   numquam? Doloribus aspernatur officiis dolorum.
@@ -495,68 +528,105 @@ const Home = () => {
             </div>
           </article>
         </section>
-        {/*
-        <section className="contact" id="contact">
-          <article className="wrapper">
+        <section>
+          <article>
             <h1>Contact Us</h1>
-            <div className="content">
-              <aside>
-                <div className="info">
-                  <i className="fa-regular fa-comments"></i>
-                  <span>E-mail Us</span>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Sit, nesciunt!
-                  </p>
-                  <Link href="#">nauffalcode@gmail.com</Link>
+            <div className="grid grid-cols-[1fr_2fr] gap-5">
+              <aside className="flex flex-col gap-4">
+                <div className="grid grid-cols-[45px_auto] justify-items-center items-center gap-6">
+                  <FontAwesomeIcon className="text-4xl" icon={faComments} />
+                  <div className="w-auto">
+                    <span className="text-xl text-accent">E-mail Us</span>
+                    <p className="mb-2">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Sit, nesciunt!
+                    </p>
+                    <Link href="#" className="text-main">
+                      nauffalcode@gmail.com
+                    </Link>
+                  </div>
                 </div>
-                <div className="info">
-                  <i className="fa-solid fa-phone"></i>
-                  <span>Chat/Call Us</span>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Sit, nesciunt!
-                  </p>
-                  <Link href="#">+62-878-4390-2885</Link>
+                <div className="grid grid-cols-[45px_auto] justify-items-center items-center gap-6">
+                  <FontAwesomeIcon className="text-4xl" icon={faPhone} />
+                  <div className="w-auto">
+                    <span className="text-xl text-accent">Chat/Call Us</span>
+                    <p className="mb-2">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Sit, nesciunt!
+                    </p>
+                    <Link href="#" className="text-main">
+                      +62-878-4390-2885
+                    </Link>
+                  </div>
                 </div>
-                <div className="info">
-                  <i className="fa-solid fa-location-dot"></i>
-                  <span>Visit Us</span>
-                  <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Sit, nesciunt!
-                  </p>
-                  <Link href="#">@nauffal.code</Link>
+                <div className="grid grid-cols-[45px_auto] justify-items-center items-center gap-6">
+                  <FontAwesomeIcon className="text-4xl" icon={faLocationDot} />
+                  <div className="w-auto">
+                    <span className="text-xl text-accent">Visit Us</span>
+                    <p className="mb-2">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                      Sit, nesciunt!
+                    </p>
+                    <Link href="#" className="text-main">
+                      @nauffal.code
+                    </Link>
+                  </div>
                 </div>
               </aside>
-              <form action="#" className="contact-form">
+              <form action="#" className="flex flex-col gap-4 justify-between">
                 <div className="head">
-                  <h2>Got ideas? We've got the skills. Let's team up!</h2>
+                  <h2>Got ideas? We have got the skills. Lets team up!</h2>
                   <p>
                     Tell us more about yourself and what is you got in your
                     mind.
                   </p>
                 </div>
-                <div className="input-box">
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder="Your name"
-                    autocomplete="off"
-                  />
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="you@gmail.com"
-                    autocomplete="off"
-                  />
-                  <textarea
-                    name=""
-                    id="message"
-                    placeholder="Tell us about the project..."
-                  ></textarea>
+                <div className="flex flex-col gap-2">
+                  <div className="grid grid-cols-[112px_auto]">
+                    <label
+                      htmlFor="username"
+                      className="flex justify-center items-center bg-secondary text-white rounded-l-[10px] text-lg"
+                    >
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full border-b-2 border-secondary py-3 px-4"
+                      id="username"
+                      placeholder="Your name"
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div className="grid grid-cols-[112px_auto]">
+                    <label
+                      htmlFor="email"
+                      className="flex justify-center items-center bg-secondary text-white rounded-l-[10px] text-lg"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="w-full border-b-2 border-secondary py-3 px-4"
+                      id="email"
+                      placeholder="you@gmail.com"
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div className="grid grid-cols-[112px_auto]">
+                    <label
+                      htmlFor="message"
+                      className="flex justify-center items-center bg-secondary text-white rounded-l-[10px] text-lg"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      className="w-full border-b-2 border-secondary py-4 px-4"
+                      placeholder="Tell us about the project..."
+                    ></textarea>
+                  </div>
                 </div>
-                <div className="select-box">
+                {/* <div className="select-box">
                   <label>
                     <input type="checkbox" name="" />
                     <i className="fa-solid fa-check checkmark"></i>
@@ -582,37 +652,41 @@ const Home = () => {
                     <i className="fa-solid fa-check checkmark"></i>
                     Database Development
                   </label>
-                </div>
-                <button type="submit">Submit</button>
+                </div> */}
+                <button
+                  type="submit"
+                  className="bg-main text-white text-lg font-medium ml-auto py-2 px-4 rounded-[10px]"
+                >
+                  Submit
+                </button>
               </form>
             </div>
           </article>
         </section>
-      */}
       </main>
-      {/* <footer>
+      <footer className="flex items-center justify-center bg-secondary text-white py-6">
         <span>
           Created by <Link href="">nauffal.code</Link> | &copy;2024 All Rights
           Reserved.
         </span>
         <div className="social-links">
           <Link href="#">
-            <i className="fa-brands fa-instagram"></i>
+            <FontAwesomeIcon icon={faInstagram} />
           </Link>
           <Link href="#">
-            <i className="fa-brands fa-tiktok"></i>
+            <FontAwesomeIcon icon={faTiktok} />
           </Link>
           <Link href="#">
-            <i className="fa-brands fa-facebook"></i>
+            <FontAwesomeIcon icon={faFacebook} />
           </Link>
           <Link href="#">
-            <i className="fa-brands fa-youtube"></i>
+            <FontAwesomeIcon icon={faYoutube} />
           </Link>
           <Link href="#">
-            <i className="fa-brands fa-github"></i>
+            <FontAwesomeIcon icon={faGithub} />
           </Link>
         </div>
-      </footer> */}
+      </footer>
     </>
   );
 };

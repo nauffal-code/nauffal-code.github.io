@@ -21,6 +21,9 @@
 }
 
 /* SIMILAR CSS */
+* {
+  outline: none;
+}
 section {
   display: flex;
   justify-content: center;
