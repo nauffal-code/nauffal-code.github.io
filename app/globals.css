@@ -13,6 +13,22 @@
   --paragraph: "EB Garamond", sans-serif;
 }
 
+@layer utilities {
+  .custom-scroll::-webkit-scrollbar {
+    height: 5px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -36,8 +52,8 @@ article {
   align-items: flex-start;
   gap: 1.5rem;
   width: 900px;
-  max-width: 95%;
-  padding: 80px 0;
+  max-width: 90%;
+  padding: 5rem 0;
 }
 h1 {
   color: var(--color-main);
@@ -49,6 +65,10 @@ h2 {
   font-size: 2rem;
   font-weight: 500;
   margin: 0 0 0.5rem 0;
+}
+a,
+button {
+  cursor: pointer;
 }
 input {
   outline: none;
@@ -69,13 +89,41 @@ button {
   background-color: var(--color-main) !important;
 }
 
+/* SIMILAR CSS BREAKPOINTS */
+@media (max-width: 768px) {
+  article {
+    gap: 1rem;
+    padding: 4rem 0;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+  }
+}
+@media (max-width: 576px) {
+  article {
+    gap: 0.5rem;
+    padding: 3rem 0;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1rem;
+    margin: 0 0 0.25rem 0;
+  }
+}
+
 /* CUSTOM CSS */
 .main-nav {
-  @apply fixed top-0 left-0 w-full flex justify-between items-center bg-transparent py-8 px-10 z-10;
+  @apply fixed top-0 left-0 w-full flex justify-between items-center md:py-8 md:px-10 min-[576px]:py-6 min-[576px]:px-8 py-4 px-6 z-10;
 }
 .underline-hover {
-  @apply relative after:content-[''] after:absolute after:top-0 after:-bottom-1 after:left-0 after:right-0 after:border-b-2 after:border-b-black after:scale-x-0 after:transition after:duration-200 hover:after:scale-x-[0.5];
+  @apply relative after:content-[''] after:absolute after:top-0 after:-bottom-1 after:left-0 after:right-0 after:border-b-2 after:scale-x-0 after:transition after:duration-200 hover:after:scale-x-[0.5] md:text-base min-[576px]:text-sm text-xs;
 }
 .normal-btn {
-  @apply inline-block bg-main font-medium text-white mt-4 py-3 px-5 rounded-[10px];
+  @apply inline-block bg-main font-medium text-white md:text-base min-[576px]:text-sm text-xs md:mt-6 min-[576px]:mt-4 mt-2 md:py-3 py-2 md:px-5 min-[576px]:px-4 px-3 border-2 border-main rounded-[10px] hover:bg-transparent hover:text-main;
 }
