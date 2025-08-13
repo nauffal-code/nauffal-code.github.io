@@ -14,6 +14,13 @@
 }
 
 @layer utilities {
+  .custom-scroll {
+    overflow-x: hidden;
+  }
+  .custom-scroll:hover {
+    overflow-x: auto;
+    transition: 0.3s;
+  }
   .custom-scroll::-webkit-scrollbar {
     height: 5px;
   }

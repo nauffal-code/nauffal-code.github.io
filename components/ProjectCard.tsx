@@ -49,7 +49,7 @@ const ProjectCard = ({
             <FontAwesomeIcon icon={faGithub} />
           </Link>
         </div>
-        <div className="flex gap-2 mt-2 mb-3 pb-2 overflow-x-scroll custom-scroll">
+        <div className="flex gap-2 mt-2 mb-2 pb-2 custom-scroll">
           {projectTools.map((tool: string, index: number) => (
             <span
               key={index}
@@ -67,7 +67,11 @@ const ProjectCard = ({
           {projectDesc}
         </p>
         <p
-          className="absolute bottom-[22px] right-5 bg-white pl-1 text-sm text-accent font-semibold cursor-pointer"
+          className={
+            hover
+              ? `hidden absolute bottom-[22px] right-5 bg-white pl-1 text-sm text-accent font-semibold cursor-pointer`
+              : `absolute bottom-[22px] right-5 bg-white pl-1 text-sm text-accent font-semibold cursor-pointer`
+          }
           onClick={toggleHover}
         >
           <span className="text-secondary">...</span> Read more

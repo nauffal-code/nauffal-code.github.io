@@ -46,10 +46,6 @@ const Home = () => {
   };
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
   // const [formData, setFormData] = useState({
   //   name: "",
   //   email: "",
@@ -57,51 +53,27 @@ const Home = () => {
   //   message: "",
   //   services: [],
   // });
-  // const [toolsDrop, setToolsDrop] = useState(false);
-  // const toggleToolsDrop = () => {};
+  const [toolsValue, setToolsValue] = useState("Tools");
+  const [toolsDrop, setToolsDrop] = useState(false);
+  const [typesDrop, setTypesDrop] = useState(false);
 
-  // const [typesDrop, setTypesDrop] = useState(false);
+  const toggleToolsDrop = () => {
+    setToolsDrop(!toolsDrop);
+  };
 
-  useEffect(() => {
-    const controller = new AbortController();
+  const toggleTypesDrop = () => {
+    setTypesDrop(!typesDrop);
+  };
 
-    const fetchProjects = async () => {
-      try {
-        const res = await fetch(`/api/project_data?q=${searchValue}`, {
-          signal: controller.signal,
-        });
-        if (!res.ok) throw new Error("Failed to fetch");
-        const data = await res.json();
-        setProjects(data);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const delayDebounce = setTimeout(() => {
-      fetchProjects();
-    }, 300); // Debounce to avoid too many calls
-
-    return () => {
-      clearTimeout(delayDebounce);
-      controller.abort(); // cancel on unmount or re-run
-    };
-  }, [searchValue]);
-
-  if (loading)
-    return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <p className="text-secondary text-lg font-medium">Loading...</p>
-      </div>
-    );
-  if (error) return <p>Error: {error}</p>;
-
-  // Change nav background on scroll
-  if (typeof window === "undefined") return null; // Ensure this runs only on the client side
-
+  // FILTER PROJECT
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [allProjects, setAllProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(false);
+  window.addEventListener("load", () => {
+    setLoading(true);
+  });
   window.addEventListener("scroll", () => {
     if (window.scrollY > 0) {
       setIsScrolled(true);
@@ -109,6 +81,68 @@ const Home = () => {
       setIsScrolled(false);
     }
   });
+
+  useEffect(() => {
+    const fetchAllProjects = async () => {
+      try {
+        const res = await fetch("/api/project_data");
+        if (!res.ok) throw new Error("Failed to fetch projects");
+
+        const data: Project[] = await res.json();
+        setAllProjects(data);
+        setProjects(data); // initial display
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchAllProjects();
+  }, []);
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      const filtered = allProjects.filter((p) => {
+        const matchesSearch = p.title
+          .toLowerCase()
+          .includes(searchValue.toLowerCase());
+
+        const matchesTool =
+          toolsValue === "Tools" ||
+          p.tool.some(
+            (tool) => tool.toLowerCase() === toolsValue.toLowerCase()
+          );
+
+        const matchesTags =
+          selectedTags.length === 0 ||
+          selectedTags.includes(p.type.toLowerCase());
+
+        return matchesSearch && matchesTool && matchesTags;
+      });
+
+      setProjects(filtered);
+    }, 200);
+
+    return () => clearTimeout(delay);
+  }, [searchValue, toolsValue, selectedTags, allProjects]);
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    setSelectedTags((prev) =>
+      checked ? [...prev, value] : prev.filter((tag) => tag !== value)
+    );
+  };
+
+  if (loading)
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <p className="text-secondary text-lg font-medium">Loading...</p>
+      </div>
+    );
+
+  if (typeof window === "undefined") return null;
+
+  // const [error, setError] = useState<string | null>(null);
+  // if (error) return <p>Error: {error}</p>;
 
   // CONTACT TO WHATSAPP
   // const handleChange = (e) => {
@@ -333,55 +367,102 @@ h-[20px]! object-cover"
                 <div className="relative flex flex-col w-[200px] border-r-2 border-white">
                   <div
                     className="flex justify-between items-center h-full bg-main text-white text-lg px-4 rounded-l-[10px]"
-                    // onClick={}
+                    onClick={toggleToolsDrop}
                   >
-                    <span className="font-medium">Tools</span>
+                    <span className="font-medium">{toolsValue}</span>
                     <FontAwesomeIcon icon={faCaretDown} />
                   </div>
                   <div
-                    // className={
-                    //   toolsDrop
-                    //     ? "absolute top-full left-0 flex flex-col w-full opacity-1"
-                    //     : "absolute top-full left-0 flex flex-col w-full opacity-0"
-                    // }
-                    className="absolute top-full left-0 flex flex-col w-full opacity-0"
+                    className={
+                      toolsDrop
+                        ? "absolute top-full left-0 flex flex-col w-full h-full opacity-100"
+                        : "absolute top-full left-0 flex flex-col w-full h-full opacity-0"
+                    }
+                    onClick={toggleToolsDrop}
                   >
-                    <span className="w-full bg-white text-secondary text-center py-2">
+                    <span
+                      onClick={(e) =>
+                        setToolsValue(
+                          (e.target as HTMLElement).textContent || ""
+                        )
+                      }
+                      className="w-full bg-white text-secondary text-center py-2 cursor-pointer"
+                    >
                       HTML
                     </span>
-                    <span className="w-full bg-white text-secondary text-center py-2  border-y-1 border-secondary">
+                    <span
+                      onClick={(e) =>
+                        setToolsValue(
+                          (e.target as HTMLElement).textContent || ""
+                        )
+                      }
+                      className="w-full bg-white text-secondary text-center py-2 cursor-pointer  border-y-1 border-secondary"
+                    >
                       CSS
                     </span>
-                    <span className="w-full bg-white text-secondary text-center py-2">
+                    <span
+                      onClick={(e) =>
+                        setToolsValue(
+                          (e.target as HTMLElement).textContent || ""
+                        )
+                      }
+                      className="w-full bg-white text-secondary text-center py-2 cursor-pointer"
+                    >
                       JavaScript
                     </span>
-                    <span className="w-full bg-white text-secondary text-center py-2 border-y-1 border-secondary">
+                    <span
+                      onClick={(e) =>
+                        setToolsValue(
+                          (e.target as HTMLElement).textContent || ""
+                        )
+                      }
+                      className="w-full bg-white text-secondary text-center py-2 cursor-pointer border-y-1 border-secondary"
+                    >
                       PHP
                     </span>
-                    <span className="w-full bg-white text-secondary text-center py-2 rounded-b-[10px]">
+                    <span
+                      onClick={(e) =>
+                        setToolsValue(
+                          (e.target as HTMLElement).textContent || ""
+                        )
+                      }
+                      className="w-full bg-white text-secondary text-center py-2 cursor-pointer rounded-b-[10px]"
+                    >
                       Python
                     </span>
                   </div>
                 </div>
                 <div className="relative flex flex-col w-[200px]">
-                  <div className="flex justify-between items-center h-full bg-main text-white text-lg px-4 rounded-r-[10px]">
+                  <div
+                    className="flex justify-between items-center h-full bg-main text-white text-lg px-4 rounded-r-[10px]"
+                    onClick={toggleTypesDrop}
+                  >
                     <span className="font-medium">Types</span>
                     <FontAwesomeIcon icon={faCaretDown} />
                   </div>
-                  <div className="absolute top-full left-0 flex flex-col w-full opacity-0">
-                    <label className="w-full bg-white text-secondary p-2">
-                      <input type="checkbox" className="mr-2" />
-                      <i className="fa-solid fa-check checkmark"></i>Landing
-                      Page
-                    </label>
-                    <label className="w-full bg-white text-secondary p-2 border-y-1 border-secondary">
-                      <input type="checkbox" className="mr-2" />
-                      <i className="fa-solid fa-check checkmark"></i>Web App
-                    </label>
-                    <label className="w-full bg-white text-secondary p-2">
-                      <input type="checkbox" className="mr-2" />
-                      <i className="fa-solid fa-check checkmark"></i>Web Game
-                    </label>
+                  <div
+                    className={
+                      typesDrop
+                        ? "absolute top-full left-0 flex flex-col w-full h-full opacity-100"
+                        : "absolute top-full left-0 flex flex-col w-full h-full opacity-0"
+                    }
+                  >
+                    {["landing page", "web app", "web game"].map((tag) => (
+                      <label
+                        key={tag}
+                        className="w-full bg-white text-secondary p-2"
+                      >
+                        <input
+                          type="checkbox"
+                          value={tag}
+                          onChange={handleCheckboxChange}
+                          className="mr-2"
+                          checked={selectedTags.includes(tag)}
+                        />
+                        <i className="fa-solid fa-check checkmark mr-2"></i>
+                        {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                      </label>
+                    ))}
                   </div>
                 </div>
               </div>
